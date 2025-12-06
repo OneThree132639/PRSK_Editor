@@ -34,7 +34,13 @@ settings = None
 
 
 class mainForm(qw.QMainWindow, Ui_SekaiText):
-    def __init__(self, root):
+    def __init__(self, root: str):
+        '''
+        创建SekaiText图形用户界面实例. 
+        
+        :param root: 项目资源根目录
+        :type root: str
+        '''
         super().__init__()
 
         self.chars = characterDict
