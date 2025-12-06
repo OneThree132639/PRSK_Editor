@@ -2,11 +2,12 @@ from __future__ import unicode_literals
 
 import json
 import logging
+import math
 import os.path as osp
 from os import environ
 import requests
 import time
-import math
+from typing import Optional
 
 from Dictionary import unitDict, sekaiDict, characterDict, areaDict
 from Dictionary import greetDict_season, greetDict_celebrate, greetDict_holiday
@@ -43,7 +44,13 @@ class ListManager():
         'harukiCNBaseUrl' : "https://bot-assets.haruki.seiunx.com/assets/",
     }
 
-    def __init__(self, settingDir):
+    def __init__(self, settingDir: str):
+        '''
+        创建配置文件管理器实例. 
+        
+        :param settingDir: 项目配置目录
+        :type settingDir: str
+        '''
         self.settingDir = settingDir
         settingPath = osp.join(self.settingDir, "setting.json")
         if osp.exists(settingPath):
@@ -63,6 +70,16 @@ class ListManager():
         self.voiceClues = self.buildVoiceIDClues()
 
     def loadFile(self, fileName: str, content: str, default: object = None):
+        '''
+        载入json配置文件. 
+        
+        :param fileName: 文件名
+        :type fileName: str
+        :param content: 内容描述, 用于日志输出
+        :type content: str
+        :param default: 默认返回值, 默认值为`None`
+        :type default: object
+        '''
         if default is None:
             default = []
         data = default
