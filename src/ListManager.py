@@ -81,8 +81,8 @@ class ListManager():
         :type default: object
         '''
         if default is None:
-            default = []
-        data = default
+            default = []  # 不传入默认值时, 默认值为空列表
+        data = default  # 路径不存在的时候返回默认值
         path = osp.join(self.settingDir, fileName)
         if osp.exists(path):
             with open(path, 'r', encoding='utf-8') as f:
